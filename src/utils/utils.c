@@ -90,6 +90,8 @@ void	set_cheapest(t_stack *a_stack)
 	long	min_cost;
 	t_stack	*cheapest_node;
 
+	min_cost = LONG_MAX;
+	cheapest_node = NULL;
 	if (a_stack == NULL)
 		return ;
 	while (a_stack)
