@@ -24,6 +24,7 @@ void	append_node(t_stack **a_stack, int n)
 		return ;
 	new_node->nbr = n;
 	new_node->next = NULL;
+	new_node->cheapest = 0;
 	if (!(*a_stack))
 	{
 		new_node->prev = NULL;
@@ -90,10 +91,9 @@ void	set_cheapest(t_stack *a_stack)
 	long	min_cost;
 	t_stack	*cheapest_node;
 
-	min_cost = LONG_MAX;
-	cheapest_node = NULL;
 	if (a_stack == NULL)
 		return ;
+	min_cost = LONG_MAX;
 	while (a_stack)
 	{
 		if (a_stack->push_cost < min_cost)

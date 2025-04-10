@@ -21,7 +21,8 @@ int	main(int argc, char **argv)
 		return (1);
 	if (argc == 2)
 	{
-		argv = ft_split(argv[1], ' ');
+		if ((argv = ft_split(argv[1], ' ')) == NULL)
+			free_errors(NULL);
 	}
 	a_stack = NULL;
 	b_stack = NULL;

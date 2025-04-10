@@ -19,13 +19,10 @@ int	error_syntax(char *str_n)
 	if ((*str_n == '+' || *str_n == '-')
 		&& !(str_n[1] >= '0' && str_n[1] <= '9'))
 		return (1);
-	if (*str_n == '+' || *str_n == '-')
-		str_n++;
-	while (*str_n)
+	while (*++str_n)
 	{
 		if (!(*str_n >= '0' && *str_n <= '9'))
 			return (1);
-		str_n++;
 	}
 	return (0);
 }

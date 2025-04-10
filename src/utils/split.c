@@ -65,6 +65,8 @@ char	**ft_split(char *str, char c)
 
 	i = 0;
 	word_count = ft_wordcount(str, c);
+	if(word_count == 0 || word_count == 1)
+		return (NULL);
 	words = malloc(sizeof(char *) * (word_count + 1));
 	if (!words)
 		return (NULL);
@@ -78,8 +80,7 @@ char	**ft_split(char *str, char c)
 			free(words);
 			return (NULL);
 		}
-		str += ft_strlen(words[i]) + 1;
-		i++;
+		str += ft_strlen(words[i++]) + 1;
 	}
 	words[i] = NULL;
 	return (words);

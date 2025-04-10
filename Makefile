@@ -11,7 +11,7 @@ SRC = $(UTILS_DIR) $(COMMANDS_DIR) src/main.c
 OBJ = $(patsubst src/%.c,obj/%.o,$(SRC))
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 all: $(PRINTF)/libftprintf.a $(NAME)
 
