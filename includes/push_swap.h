@@ -44,8 +44,7 @@ t_stack	*find_cheapest(t_stack *stack);
 
 void	init_stack_a(t_stack **a_stack, char **argv);
 void	sort_three(t_stack **a_stack);
-void	init_nodes_a(t_stack *a_stack, t_stack *b_stack);
-void	init_nodes_b(t_stack *a_stack, t_stack *b_stack);
+void	init_nodes(t_stack *a_stack, t_stack *b_stack, int a);
 void	sort_large(t_stack **a_stack, t_stack **b_stack);
 void	set_target_a(t_stack *a_stack, t_stack *b_stack);
 void	set_cheapest(t_stack *a_stack);

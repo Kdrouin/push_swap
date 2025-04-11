@@ -36,13 +36,13 @@ void	sort_large(t_stack **a_stack, t_stack **b_stack)
 		pb(b_stack, a_stack, false);
 	while (length-- > 3 && !stack_is_sorted(*a_stack))
 	{
-		init_nodes_a(*a_stack, *b_stack);
+		init_nodes(*a_stack, *b_stack, 1);
 		move_a_to_b(a_stack, b_stack);
 	}
 	sort_three(a_stack);
 	while (*b_stack)
 	{
-		init_nodes_b(*a_stack, *b_stack);
+		init_nodes(*a_stack, *b_stack, 0);
 		move_b_to_a(a_stack, b_stack);
 	}
 	current_index(*a_stack);

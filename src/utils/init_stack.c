@@ -40,20 +40,22 @@ static void	set_target_b(t_stack *a_stack, t_stack *b_stack)
 	}
 }
 
-void	init_nodes_b(t_stack *a_stack, t_stack *b_stack)
+void	init_nodes(t_stack *a_stack, t_stack *b_stack, int a)
 {
-	current_index(a_stack);
-	current_index(b_stack);
-	set_target_b(a_stack, b_stack);
-}
-
-void	init_nodes_a(t_stack *a_stack, t_stack *b_stack)
-{
-	current_index(a_stack);
-	current_index(b_stack);
-	set_target_a(a_stack, b_stack);
-	cost_analysis(a_stack, b_stack);
-	set_cheapest(a_stack);
+	if(a == 1)
+	{
+		current_index(a_stack);
+		current_index(b_stack);
+		set_target_a(a_stack, b_stack);
+		cost_analysis(a_stack, b_stack);
+		set_cheapest(a_stack);
+	}
+	else
+	{
+		current_index(a_stack);
+		current_index(b_stack);
+		set_target_b(a_stack, b_stack);
+	}
 }
 
 void	init_stack_a(t_stack **a_stack, char **argv)
@@ -76,11 +78,30 @@ void	init_stack_a(t_stack **a_stack, char **argv)
 	}
 }
 
+static int	handle_long(const char *s)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while(s[i + j])
+	{
+		if (s[i + j] == '0')
+			j++;
+		else if (s[i + j] != '0')
+			i++;
+	}
+	return(i);
+}
 long	ft_atol(const char *s)
 {
 	long	result;
 	int		sign;
 
+	result = 0;
+	if(handle_long(s) >= 12)
+			free_errors(NULL);}
 	result = 0;
 	sign = 1;
 	while (*s == ' ' || *s == '\t' || *s == '\n' || \
