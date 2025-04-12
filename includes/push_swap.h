@@ -62,7 +62,8 @@ void	rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_node);
 int		error_syntax(char *str_n);
 int		error_duplicate(t_stack *a, int n);
 void	free_stack(t_stack **stack);
-void	free_errors(t_stack **a);
+void	free_errors(t_stack **a, char **argv);
+void	free_arg(char **argv);
 
 void	pa(t_stack **a_stack, t_stack **b_stack, bool print);
 void	pb(t_stack **b_stack, t_stack **a_stack, bool print);

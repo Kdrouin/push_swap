@@ -20,13 +20,12 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (1);
 	if (argc == 2)
-	{
-		if ((argv = ft_split(argv[1], ' ')) == NULL)
-			free_errors(NULL);
-	}
+		argv = ft_split(argv[1], ' ');
 	a_stack = NULL;
 	b_stack = NULL;
-	init_stack_a(&a_stack, argv + 1);
+	if (argv[0])
+		argv[0] = 0;
+	init_stack_a(&a_stack, argv);
 	while (!stack_is_sorted(a_stack) && a_stack->next != NULL)
 	{
 		if (stack_length(a_stack) == 2)
@@ -37,5 +36,7 @@ int	main(int argc, char **argv)
 			sort_large(&a_stack, &b_stack);
 	}
 	free_stack(&a_stack);
+	if (argc == 2)
+		free_arg(argv);
 	return (0);
 }

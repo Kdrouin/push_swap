@@ -57,9 +57,26 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-void	free_errors(t_stack **a)
+void	free_errors(t_stack **a, char **argv)
 {
+	if (!a && !argv)
+		return ;
 	free_stack(a);
+	if (argv)
+		free_arg(argv);
 	ft_printf("Error\n");
 	exit(1);
+}
+
+void	free_arg(char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
 }

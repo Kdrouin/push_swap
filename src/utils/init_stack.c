@@ -42,7 +42,7 @@ static void	set_target_b(t_stack *a_stack, t_stack *b_stack)
 
 void	init_nodes(t_stack *a_stack, t_stack *b_stack, int a)
 {
-	if(a == 1)
+	if (a == 1)
 	{
 		current_index(a_stack);
 		current_index(b_stack);
@@ -63,16 +63,16 @@ void	init_stack_a(t_stack **a_stack, char **argv)
 	int		i;
 	long	n;
 
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			free_errors(a_stack);
+			free_errors(a_stack, argv);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			free_errors(a_stack);
+			free_errors(a_stack, argv);
 		if (error_duplicate(*a_stack, (int)n))
-			free_errors(a_stack);
+			free_errors(a_stack, argv);
 		append_node(a_stack, (int)n);
 		i++;
 	}
@@ -80,28 +80,29 @@ void	init_stack_a(t_stack **a_stack, char **argv)
 
 static int	handle_long(const char *s)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	while(s[i + j])
+	while (s[i + j])
 	{
 		if (s[i + j] == '0')
 			j++;
 		else if (s[i + j] != '0')
 			i++;
 	}
-	return(i);
+	return (i);
 }
+
 long	ft_atol(const char *s)
 {
 	long	result;
 	int		sign;
 
 	result = 0;
-	if(handle_long(s) >= 12)
-			free_errors(NULL);}
+	if (handle_long(s) >= 12)
+		free_errors(NULL, 0);
 	result = 0;
 	sign = 1;
 	while (*s == ' ' || *s == '\t' || *s == '\n' || \

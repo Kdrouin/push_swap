@@ -31,7 +31,7 @@ static int	ft_wordcount(char *str, char c)
 	return (count);
 }
 
-static char	*ft_get_next_word(char *str, char c)
+static char	*ft_get_next_word(char *str, char c, int end)
 {
 	int		i;
 	int		j;
@@ -54,7 +54,18 @@ static char	*ft_get_next_word(char *str, char c)
 		j++;
 	}
 	word[j] = '\0';
+	end += i;
 	return (word);
+}
+
+static void	free_split(char **words, int i)
+{
+	while (i >= 0)
+	{
+		free(words[i]);
+		i--;
+	}
+	free(words);
 }
 
 char	**ft_split(char *str, char c)
@@ -62,26 +73,27 @@ char	**ft_split(char *str, char c)
 	int		i;
 	int		word_count;
 	char	**words;
+	int		index_word;
 
-	i = 0;
+	i = 1;
+	index_word = 0;
 	word_count = ft_wordcount(str, c);
-	if(word_count == 0 || word_count == 1)
-		return (NULL);
-	words = malloc(sizeof(char *) * (word_count + 1));
+	words = malloc(sizeof(char *) * (word_count + 2));
 	if (!words)
 		return (NULL);
-	while (i < word_count)
+	words[0] = NULL;
+	while (i < word_count + 1)
 	{
-		words[i] = ft_get_next_word(str, c);
+		words[i] = ft_get_next_word(str, c, index_word);
 		if (!words[i])
 		{
-			while (i >= 0)
-				free(words[i--]);
-			free(words);
+			free_split(words, i - 1);
 			return (NULL);
 		}
-		str += ft_strlen(words[i++]) + 1;
+		str += ft_strlen(words[i]) + 1;
+		i++;
 	}
 	words[i] = NULL;
 	return (words);
 }
+
