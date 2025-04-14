@@ -34,6 +34,7 @@ typedef struct s_stack
 
 char	**ft_split(char *str, char c);
 long	ft_atol(const char *s);
+void	ft_putstr_fd(char *s, int fd);
 void	append_node(t_stack **a_stack, int n);
 
 t_stack	*find_last(t_stack *stack);

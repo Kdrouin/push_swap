@@ -59,12 +59,11 @@ void	free_stack(t_stack **stack)
 
 void	free_errors(t_stack **a, char **argv)
 {
-	if (!a && !argv)
-		return ;
-	free_stack(a);
-	if (argv)
+	if (a)
+		free_stack(a);
+	if (argv && argv[0] == NULL)
 		free_arg(argv);
-	ft_printf("Error\n");
+	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
 
