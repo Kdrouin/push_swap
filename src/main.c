@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	init_stack_a(&a_stack, splited);
 	main_loop(&a_stack, &b_stack);
 	free_stack(&a_stack);
-	if (splited)
+	if (argc == 2)
 		free_arg(splited);
 	return (0);
 }
